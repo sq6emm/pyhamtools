@@ -9,7 +9,7 @@ def latlong_to_locator (latitude, longitude, precision=6):
         Args:
             latitude (float): Latitude
             longitude (float): Longitude
-            precision (int): 4,6,8 chars (default 6)
+            precision (int): 4,6,8,10 chars (default 6)
 
         Returns:
             string: Maidenhead locator
@@ -33,7 +33,7 @@ def latlong_to_locator (latitude, longitude, precision=6):
 
     """
 
-    if precision < 4 or precision ==5 or precision == 7 or precision > 8:
+    if precision < 4 or precision == 5 or precision == 7 or precision == 9 or precision > 10:
         return ValueError
 
     if longitude >= 180 or longitude <= -180:
@@ -99,7 +99,7 @@ def locator_to_latlong (locator, center=True):
 
     locator = locator.upper()
 
-    if len(locator) < 4 or len(locator) == 5 or len(locator) == 7:
+    if len(locator) < 4 or len(locator) == 5 or len(locator) == 7 or len(locator) == 9:
         raise ValueError
 
     if ord(locator[0]) > ord('R') or ord(locator[0]) < ord('A'):
@@ -124,6 +124,12 @@ def locator_to_latlong (locator, center=True):
         if ord(locator[6]) > ord('9') or ord(locator[6]) < ord('0'):
             raise ValueError
         if ord (locator[7]) > ord('9') or ord(locator[7]) < ord('0'):
+            raise ValueError
+
+    if len(locator) == 10:
+        if ord(locator[8]) > ord('X') or ord(locator[8]) < ord('A'):
+            raise ValueError
+        if ord (locator[9]) > ord('X') or ord(locator[9]) < ord('A'):
             raise ValueError
 
     longitude = (ord(locator[0]) - ord('A')) * 20 - 180
@@ -155,6 +161,20 @@ def locator_to_latlong (locator, center=True):
         if center:
             longitude += 5.0 / 600 / 2
             latitude += 2.5 / 600 / 2
+
+    elif len(locator) == 10:
+        longitude += (ord(locator[4]) - ord('A')) * 5.0 / 60
+        latitude += (ord(locator[5]) - ord('A')) * 2.5 / 60
+
+        longitude += int(locator[6]) * 5.0 / 600
+        latitude += int(locator[7]) * 2.5 / 600
+
+        longitude += (ord(locator[8]) - ord('A')) * 1.0 / 2880
+        latitude += (ord(locator[9]) - ord('A')) * 1.0 / 5760
+
+        if center:
+            longitude += 1.0 / 2880 / 2
+            latitude += 1.0 / 5760 / 2
 
     else:
         raise ValueError
