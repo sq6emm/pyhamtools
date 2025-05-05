@@ -182,7 +182,7 @@ def freq_to_band(freq):
     elif ((freq >= 1200000) and (freq <= 1300000)):
         band = 0.23  #23cm
         mode = None
-    elif ((freq >= 2390000) and (freq <= 2450000)):
+    elif ((freq >= 2300000) and (freq <= 2450000)):
         band = 0.13  #13cm
         mode = None
     elif ((freq >= 3300000) and (freq <= 3500000)):
