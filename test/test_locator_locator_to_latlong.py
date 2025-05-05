@@ -30,8 +30,7 @@ class Test_locator_to_latlong():
         assert abs(latitude - 48.52083) < 0.00001
         assert abs(longitude - 9.37500) < 0.00001
 
-    def test_locator_to_latlong_8chars(self):
-
+    def test_locator_to_latlong_8chars_precision(self):
         latitude, longitude = locator_to_latlong("JN48QM84")
         assert abs(latitude - 48.51875) < 0.00001
         assert abs(longitude - 9.40416) < 0.00001
@@ -39,6 +38,15 @@ class Test_locator_to_latlong():
         latitude, longitude = locator_to_latlong("EM69SF53")
         assert abs(latitude - 39.222916) < 0.00001
         assert abs(longitude + 86.45416) < 0.00001
+
+    def test_locator_to_latlong_10chars_precision(self):
+        latitude, longitude = locator_to_latlong("JO81LC39AX")
+        assert abs(latitude - 51.124913) < 0.000001
+        assert abs(longitude - 16.941840) < 0.000001
+
+        latitude, longitude = locator_to_latlong("MN45GU30AN")
+        assert abs(latitude - 45.835677) < 0.000001
+        assert abs(longitude - 68.525173) < 0.000001
 
     def test_locator_to_latlong_consistency_checks_6chars_lower_left_corner(self):
 
@@ -96,6 +104,9 @@ class Test_locator_to_latlong():
         
         with pytest.raises(ValueError):
             latitude, longitude = locator_to_latlong("JN8QM1")
+
+        with pytest.raises(ValueError):
+            latitude, longitude = locator_to_latlong("JN8QM1AA")
 
     def test_locator_to_latlong_invalid_characters(self):
 

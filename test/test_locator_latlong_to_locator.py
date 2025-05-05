@@ -23,6 +23,10 @@ class Test_latlong_to_locator():
         assert latlong_to_locator(48.51760, 9.40345, precision=8) == "JN48QM84"
         assert latlong_to_locator(39.222916, -86.45416, 8) == "EM69SF53"
 
+    def test_latlong_to_locator_10chars_precision(self):
+        assert latlong_to_locator(45.83568, 68.52518, precision=10) == "MN45GU30AN"
+        assert latlong_to_locator(51.12492, 16.94183, 10) == "JO81LC39AX"
+
     def test_latlong_to_locator_invalid_characters(self):
 
         # throws ValueError in Python2 and TypeError in Python3
