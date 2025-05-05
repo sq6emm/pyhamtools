@@ -73,7 +73,7 @@ def locator_to_latlong (locator, center=True):
     """converts Maidenhead locator in the corresponding WGS84 coordinates
 
         Args:
-            locator (string): Locator, either 4, 6 or 8 characters
+            locator (string): Locator, either 4, 6, 8 or 10 characters
             center (bool): Center of (sub)square. By default True. If False, the south/western corner will be returned
 
         Returns:
@@ -186,8 +186,8 @@ def calculate_distance(locator1, locator2):
     """calculates the (shortpath) distance between two Maidenhead locators
 
         Args:
-            locator1 (string): Locator, either 4, 6 or 8 characters
-            locator2 (string): Locator, either 4, 6 or 8 characters
+            locator1 (string): Locator, either 4, 6, 8 or 10 characters
+            locator2 (string): Locator, either 4, 6, 8 or 10 characters
 
         Returns:
             float: Distance in km
@@ -231,8 +231,8 @@ def calculate_distance_longpath(locator1, locator2):
     """calculates the (longpath) distance between two Maidenhead locators
 
         Args:
-            locator1 (string): Locator, either 4, 6 or 8 characters
-            locator2 (string): Locator, either 4, 6 or 8 characters
+            locator1 (string): Locator, either 4, 6, 8 or 10 characters
+            locator2 (string): Locator, either 4, 6, 8 or 10 characters
 
         Returns:
             float: Distance in km
@@ -262,8 +262,8 @@ def calculate_heading(locator1, locator2):
     """calculates the heading from the first to the second locator
 
         Args:
-            locator1 (string): Locator, either 4, 6 or 8 characters
-            locator2 (string): Locator, either 4, 6 or 6 characters
+            locator1 (string): Locator, either 4, 6, 8 or 10 characters
+            locator2 (string): Locator, either 4, 6, 8 or 10 characters
 
         Returns:
             float: Heading in deg
@@ -305,8 +305,8 @@ def calculate_heading_longpath(locator1, locator2):
     """calculates the heading from the first to the second locator (long path)
 
         Args:
-            locator1 (string): Locator, either 4, 6 or 8 characters
-            locator2 (string): Locator, either 4, 6 or 8 characters
+            locator1 (string): Locator, either 4, 6, 8 or 10 characters
+            locator2 (string): Locator, either 4, 6, 8 or 10 characters
 
         Returns:
             float: Long path heading in deg
@@ -337,7 +337,7 @@ def calculate_sunrise_sunset(locator, calc_date=None):
     """calculates the next sunset and sunrise for a Maidenhead locator at a give date & time
 
         Args:
-            locator1 (string): Maidenhead Locator, either 4, 6 or 8 characters
+            locator1 (string): Maidenhead Locator, either 4, 6, 8 or 10 characters
             calc_date (datetime, optional): Starting datetime for the calculations (UTC)
 
         Returns:
