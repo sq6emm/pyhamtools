@@ -4,7 +4,3 @@ pytest-blockage>=0.2.2
 pytest-localserver>=0.5
 pytest-cov>=2.12
 maidenhead==1.6.0
-requests
-bs4
-redis
-ephem
